@@ -12,20 +12,15 @@ int battle_melee_attack(LPCHARACTER ch, LPCHARACTER victim)
 		if (ch->IsRiding())
 		{
 			bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < 800;
-			bool bMoving = (get_dword_time() - ch->GetLastAttackTime()) < 800;
 			if (!bAttacking)
-				return BATTLE_NONE;
-			if (!bMoving)
 				return BATTLE_NONE;
 		}
 		else
 		{
 			bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < 750;
-			bool bMoving = (get_dword_time() - ch->GetLastAttackTime()) < 750;
 			if (!bAttacking)
 				return BATTLE_NONE;
-			if (!bMoving)
-				return BATTLE_NONE;
+
 		}
 		if (!battle_distance_valid(ch, victim))
 			return BATTLE_NONE;
@@ -45,19 +40,13 @@ int battle_hit(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int & iRetDam)
 		if (pkAttacker->IsRiding())
 		{
 			bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 800;
-			bool bMoving = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 800;
 			if (!bAttacking)
-				return BATTLE_NONE;
-			if (!bMoving)
 				return BATTLE_NONE;
 		}
 		else
 		{
 			bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 750;
-			bool bMoving = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 750;
 			if (!bAttacking)
-				return BATTLE_NONE;
-			if (!bMoving)
 				return BATTLE_NONE;
 		}
 		if (!battle_distance_valid(pkAttacker, pkVictim))
