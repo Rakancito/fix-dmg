@@ -22,7 +22,6 @@ int battle_hit(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int & iRetDam)
 {
 
 // Add after
-
 	if(pkAttacker->IsPC())
 	{
 
