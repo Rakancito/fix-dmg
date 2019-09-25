@@ -7,21 +7,11 @@ int battle_melee_attack(LPCHARACTER ch, LPCHARACTER victim)
 
 	if(ch->IsPC())
 	{
+		const bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < pkAttacker->IsRiding() ? 800 : 700;
+		if (!bAttacking)
+			return BATTLE_NONE;
 		if (test_server&&ch->IsPC())
 			ch->ChatPacket(CHAT_TYPE_INFO, "Melee Attack: %d", get_dword_time() - ch->GetLastAttackTime());
-		if (ch->IsRiding())
-		{
-			bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < 800;
-			if (!bAttacking)
-				return BATTLE_NONE;
-		}
-		else
-		{
-			bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < 750;
-			if (!bAttacking)
-				return BATTLE_NONE;
-
-		}
 		if (!battle_distance_valid(ch, victim))
 			return BATTLE_NONE;
 	}
@@ -35,20 +25,12 @@ int battle_hit(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int & iRetDam)
 
 	if(pkAttacker->IsPC())
 	{
-		if (test_server&&pkAttacker->IsPC())
-			pkAttacker->ChatPacket(CHAT_TYPE_INFO, "Battle_Hit: %d", get_dword_time() - pkAttacker->GetLastAttackTime());
-		if (pkAttacker->IsRiding())
-		{
-			bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 800;
-			if (!bAttacking)
-				return BATTLE_NONE;
-		}
-		else
-		{
-			bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < 750;
-			if (!bAttacking)
-				return BATTLE_NONE;
-		}
+
+		const bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < pkAttacker->IsRiding() ? 800 : 700;
+		if (!bAttacking)
+			return BATTLE_NONE;
+		if (test_server&&ch->IsPC())
+			ch->ChatPacket(CHAT_TYPE_INFO, "Melee Attack: %d", get_dword_time() - ch->GetLastAttackTime());
 		if (!battle_distance_valid(pkAttacker, pkVictim))
 			return BATTLE_NONE;
 	}
