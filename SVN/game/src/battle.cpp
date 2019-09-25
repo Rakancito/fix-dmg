@@ -7,7 +7,7 @@ int battle_melee_attack(LPCHARACTER ch, LPCHARACTER victim)
 
 	if(ch->IsPC())
 	{
-		const bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < ch->IsRiding() ? 800 : 700;
+		const bool bAttacking = (get_dword_time() - ch->GetLastAttackTime()) < ch->IsRiding() ? 800 : 750;
 		if (!bAttacking)
 			return BATTLE_NONE;
 		//if (test_server&&ch->IsPC())
@@ -24,7 +24,7 @@ int battle_hit(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int & iRetDam)
 // Add after
 	if(pkAttacker->IsPC())
 	{
-		const bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < pkAttacker->IsRiding() ? 800 : 700;
+		const bool bAttacking = (get_dword_time() - pkAttacker->GetLastAttackTime()) < pkAttacker->IsRiding() ? 800 : 750;
 		if (!bAttacking)
 			return BATTLE_NONE;
 		//if (test_server&&pkAttacker->IsPC())
