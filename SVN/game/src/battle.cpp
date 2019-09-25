@@ -28,7 +28,7 @@ int battle_hit(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int & iRetDam)
 		if (!bAttacking)
 			return BATTLE_NONE;
 		//if (test_server&&pkAttacker->IsPC())
-		//	pkAttacker->ChatPacket(CHAT_TYPE_INFO, "Melee Attack: %d", get_dword_time() - ch->GetLastAttackTime());
+		//	pkAttacker->ChatPacket(CHAT_TYPE_INFO, "Melee Attack: %d", get_dword_time() - pkAttacker->GetLastAttackTime());
 		if (!battle_distance_valid(pkAttacker, pkVictim))
 			return BATTLE_NONE;
 	}
